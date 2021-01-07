@@ -11,7 +11,7 @@ export const App: React.FunctionComponent = () => {
 
   return (
     <div>
-      <h1>Day: {progress.day}</h1>
+      <h1>Day {progress.day}</h1>
       <Resources />
       <Allocations />
     </div>
