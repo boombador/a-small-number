@@ -1,6 +1,14 @@
 # a-small-number
 a game
 
+# Prettier + VS Code
+
+After npm-installing dependencies, you should have working code formatting after adding the following extensions to VS Code:
+```
+dbaeumer.vscode-eslint
+esbenp.prettier-vscode
+```
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
