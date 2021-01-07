@@ -1,6 +1,4 @@
 
-const createConstants = keys => keys.map(s => s.toUpperCase()).reduce((constants, key) => Object.assign({}, constants, {[key]: key}), {});
-
 // Resource Types
 const PEOPLE = 'PEOPLE';
 const FOOD = 'FOOD';
@@ -15,19 +13,42 @@ const CHOP_WOOD = 'CHOP_WOOD';
 const SCOUT = 'SCOUT';
 const DEFEND_BASE = 'DEFEND_BASE';
 
-const updateResourceStorage = (resource, delta, gameState) => {
+interface ResourceState {
+    stored: {
+        [key: string]: number
+    },
+    storageContainers: {
+        [key: string]: number
+    },
+}
+
+interface ResourceNode {
+    type: string,
+    amount: number,
+}
+
+interface ExplorationState {
+    discoveredResources: [ResourceNode]
+}
+
+interface GameState {
+    resources: ResourceState,
+    exploration: ExplorationState,
+}
+
+const updateResourceStorage = (resource : string, delta : number, gameState : GameState) => {
     // doesn't handle corner cases or lacking capacity yet
     gameState.resources.stored[resource] += delta;
 };
 
-const gatherFoodSuccess = gameState => {
+const gatherFoodSuccess = (gameState : GameState) => {
     const foundFood = 1.5 + Math.random();
-    updateResourceStorage(FOOD, foundFood, gameState),
+    updateResourceStorage(FOOD, foundFood, gameState);
 };
 
-const gatherWaterSuccess = gameState => {
+const gatherWaterSuccess = (gameState : GameState) => {
     const foundWater = 2 + Math.random();
-    updateResourceStorage(WATER, foundWater, gameState),
+    updateResourceStorage(WATER, foundWater, gameState);
 };
 
 const gameEvents = {
@@ -51,7 +72,7 @@ const gameEvents = {
 };
 
 const sampleGameState = {
-    discoveredResourceNodes: [
+    discoveredResources: [
         {
             type: WATER,
             amount: 100,
