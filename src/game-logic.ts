@@ -27,31 +27,57 @@ interface ResourceNode {
     amount: number,
 }
 
+// is an array interface necessary? found this solution on SO
+interface ResourceNodeArray {
+    [index: number]: ResourceNode
+}
+
 interface ExplorationState {
-    discoveredResources: [ResourceNode]
+    discoveredResources: ResourceNodeArray
+}
+
+interface PlanningState {
+    activityAllocations: {
+        [key: string]: number
+    }
 }
 
 interface GameState {
     resources: ResourceState,
     exploration: ExplorationState,
+    dailyPlanning: PlanningState,
 }
 
-const updateResourceStorage = (resource : string, delta : number, gameState : GameState) => {
+interface EffectFunc {
+    (gameState : GameState): GameState
+}
+
+const updateResourceStorage = (resource : string, delta : number, gameState : GameState): GameState => {
     // doesn't handle corner cases or lacking capacity yet
     gameState.resources.stored[resource] += delta;
+    return gameState;
 };
 
-const gatherFoodSuccess = (gameState : GameState) => {
+const gatherFoodSuccess : EffectFunc = gameState => {
     const foundFood = 1.5 + Math.random();
-    updateResourceStorage(FOOD, foundFood, gameState);
+    return updateResourceStorage(FOOD, foundFood, gameState);
 };
 
-const gatherWaterSuccess = (gameState : GameState) => {
+const gatherWaterSuccess : EffectFunc = gameState => {
     const foundWater = 2 + Math.random();
-    updateResourceStorage(WATER, foundWater, gameState);
+    return updateResourceStorage(WATER, foundWater, gameState);
 };
 
-const gameEvents = {
+interface Outcome {
+    title: string,
+    effect: EffectFunc,
+}
+
+interface EventDefinitions {
+    [key: string]: Outcome[]
+}
+
+const gameEvents : EventDefinitions = {
     [SCOUT]: [],
     [FORAGE]: [
         {
@@ -71,21 +97,23 @@ const gameEvents = {
     [DEFEND_BASE]: [],
 };
 
-const sampleGameState = {
-    discoveredResources: [
-        {
-            type: WATER,
-            amount: 100,
-        },
-        {
-            type: FOOD,
-            amount: 100,
-        },
-        {
-            type: WOOD,
-            amount: 100,
-        },
-    ],
+const sampleGameState : GameState = {
+    exploration: {
+        discoveredResources: [
+            {
+                type: WATER,
+                amount: 100,
+            },
+            {
+                type: FOOD,
+                amount: 100,
+            },
+            {
+                type: WOOD,
+                amount: 100,
+            },
+        ],
+    },
     resources: {
         stored: {
             [PEOPLE]: 100,
@@ -108,5 +136,30 @@ const sampleGameState = {
         },
     },
 };
+
+const selectOutcomes = (possibleOutcomes: Outcome[]): Outcome[] => {
+    // TODO: figure out if only one outcome is selected or
+    // multiple are allowed. Return an array to maintain flexibility
+    return possibleOutcomes.slice(0, 1); // just drop all but first event for now
+};
+
+const noOutcomes : Outcome[] = [];
+
+const advanceDay = (gameState : GameState) => {
+    const pendingEvents = Object.entries(gameState.dailyPlanning.activityAllocations)
+        .reduce((partialPendingEvents, [activity, personnelCount]) => {
+            const possibleOutcomes : Outcome[] = gameEvents[activity];
+            return partialPendingEvents.concat(selectOutcomes(possibleOutcomes))
+        }, noOutcomes);
+
+    return pendingEvents.reduce(
+        (state, event) => {
+            console.log(event.title);
+            return event.effect(state)
+        },
+        gameState);
+};
+
+advanceDay(sampleGameState);
 
 export default sampleGameState;
