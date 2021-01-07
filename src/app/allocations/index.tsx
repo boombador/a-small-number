@@ -4,8 +4,8 @@ import { useSelector } from 'react-redux';
 import { gameStateSelector } from 'src/state';
 
 export const Allocations: React.FunctionComponent = () => {
-  const { allocations } = useSelector(gameStateSelector);
-  const allocationItems = Object.entries(allocations).map(([allocationName, value]) => (
+  const { activityAllocations } = useSelector(gameStateSelector);
+  const allocationItems = Object.entries(activityAllocations).map(([allocationName, value]) => (
     <li>
       {allocationName}: {value}
     </li>
