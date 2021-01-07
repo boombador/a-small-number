@@ -1,6 +1,32 @@
 # a-small-number
 a game
 
+# Prettier + VS Code
+
+After npm-installing dependencies, you should have working code formatting after adding the following extensions to VS Code:
+```
+dbaeumer.vscode-eslint
+esbenp.prettier-vscode
+```
+
+Afterwards, add the following settings to your VS Code's `settings.json`
+```
+{
+  ...
+  "[typescript]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true,
+  },
+  "[typescriptreact]": {
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "editor.formatOnSave": true,
+  },
+  "typescript.updateImportsOnFileMove.enabled": "always", // Not required, it's encouraged to confirm automatic import updates if used.
+  "editor.tabSize": 2, // Not required since prettier will enforce this but more consistent.
+  ...
+}
+```
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
