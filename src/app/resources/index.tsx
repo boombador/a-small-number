@@ -6,7 +6,7 @@ import { gameStateSelector } from 'src/state';
 export const Resources: React.FunctionComponent = () => {
   const { resources } = useSelector(gameStateSelector);
   const resourceItems = Object.entries(resources.stored).map(([resourceName, value]) => (
-    <li>
+    <li key={resourceName}>
       {resourceName}: {value}
     </li>
   ));

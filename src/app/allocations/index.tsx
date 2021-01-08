@@ -6,7 +6,7 @@ import { gameStateSelector } from 'src/state';
 export const Allocations: React.FunctionComponent = () => {
   const { activityAllocations } = useSelector(gameStateSelector);
   const allocationItems = Object.entries(activityAllocations).map(([allocationName, value]) => (
-    <li>
+    <li key={allocationName}>
       {allocationName}: {value}
     </li>
   ));
