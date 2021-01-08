@@ -88,6 +88,15 @@ const emptyResources = {
   wood: 0,
 };
 
+const emptyActivities = {
+  gather_lumber: 0,
+  defend: 0,
+  gather_food: 0,
+  hunt: 0,
+  collect_water: 0,
+  scout: 0,
+};
+
 const waterEvent = (gameState: GameState): GameEvent => {
   const luck = Math.random();
   const people = gameState.activityAllocations.collect_water;
@@ -158,13 +167,25 @@ const calculateDaysEvents = (gameState: GameState): GameEvent[] => {
   return result;
 };
 
-const updatedResources = (
-  resources: Resources,
-  resourceDeltasList: { [K in ResourceType]: number }[],
-): { [K in ResourceType]: number } => {
+type ResourceMap = { [K in ResourceType]: number };
+
+const applyDelta = (deltas: ResourceMap, mapToUpdate: ResourceMap): ResourceMap => {
+  return Object.entries(deltas).reduce(
+    (partialUpdate, [key, value]) => ({ ...partialUpdate, [key]: partialUpdate[key as ResourceType] + value }),
+    mapToUpdate,
+  );
+};
+
+// const result = applyDelta({ ...emptyResources, food: 5 }, { ...emptyResources });
+// console.log(`Should return a 5: ${result.food}`);
+
+const updatedResources = (resources: Resources, resourceDeltasList: ResourceMap[]): ResourceMap => {
   // TODO: process deltas to get updated resource counts for next day
   // TODO: factor in storage containers and discard excess resources
-  return resources.stored;
+  return resourceDeltasList.reduce(
+    (updatedResources, deltas) => applyDelta(deltas, updatedResources),
+    resources.stored,
+  );
 };
 
 const gameStateSlice = createSlice({
@@ -190,12 +211,7 @@ const gameStateSlice = createSlice({
 
       // reset state for start of day
       state.activityAllocations = {
-        gather_lumber: 0,
-        defend: 0,
-        gather_food: 0,
-        hunt: 0,
-        collect_water: 0,
-        scout: 0,
+        ...emptyActivities,
       };
     },
   },
