@@ -177,7 +177,6 @@ const applyDelta = (deltas: ResourceMap, mapToUpdate: ResourceMap): ResourceMap 
 // console.log(`Test, Should return a 5: ${result.food}`);
 
 const updatedResources = (resources: Resources, resourceDeltasList: ResourceMap[]): ResourceMap => {
-  // TODO: process deltas to get updated resource counts for next day
   // TODO: factor in storage containers and discard excess resources
   return resourceDeltasList.reduce(
     (updatedResources, deltas) => applyDelta(deltas, updatedResources),
