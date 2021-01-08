@@ -66,11 +66,6 @@ const initialState: GameState = {
   },
 };
 
-type SetResourcePayload = {
-  resource: ResourceType;
-  amount: number;
-};
-
 type SetAllocationPayload = {
   activity: Activity;
   amount: number;
@@ -144,7 +139,9 @@ const huntEvent = (gameState: GameState): GameEvent => {
 };
 
 const lumberEvent = (gameState: GameState): GameEvent => {
-  const wood = 0;
+  const luck = Math.random();
+  const people = gameState.activityAllocations.gather_lumber;
+  const wood = (2 + luck * 2) * people;
   return {
     message: `Retrieved lumber, stored ${wood} units`,
     resourceDeltas: { ...emptyResources, wood },
@@ -177,7 +174,7 @@ const applyDelta = (deltas: ResourceMap, mapToUpdate: ResourceMap): ResourceMap 
 };
 
 // const result = applyDelta({ ...emptyResources, food: 5 }, { ...emptyResources });
-// console.log(`Should return a 5: ${result.food}`);
+// console.log(`Test, Should return a 5: ${result.food}`);
 
 const updatedResources = (resources: Resources, resourceDeltasList: ResourceMap[]): ResourceMap => {
   // TODO: process deltas to get updated resource counts for next day
