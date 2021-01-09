@@ -1,7 +1,8 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 
-import { Activity, incrementAllocation, decrementAllocation } from 'src/state';
+import { Activity } from 'src/game';
+import { incrementAllocation, decrementAllocation } from 'src/state';
 import { formatText } from 'src/utils/text';
 
 type Props = {

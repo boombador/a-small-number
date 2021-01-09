@@ -1,7 +1,8 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 
-import { gameStateSelector, Activity } from 'src/state';
+import { Activity } from 'src/game';
+import { gameStateSelector } from 'src/state';
 
 import { Allocation } from './AllocationItem';
 
