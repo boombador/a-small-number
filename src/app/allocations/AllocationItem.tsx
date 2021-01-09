@@ -1,7 +1,7 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
 
-import { ActivityType } from 'src/game';
+import { ActivityType } from 'src/game/types';
 import { incrementAllocation, decrementAllocation } from 'src/state';
 import { formatText } from 'src/utils/text';
 

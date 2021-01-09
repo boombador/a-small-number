@@ -1,5 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { updatedResources, calculateDaysEvents, emptyActivities, GameState, SetAllocationPayload } from '../game';
+import { updatedResources, calculateDaysEvents } from '../game';
+import { emptyActivities } from '../game/constants';
+import { GameState, SetAllocationPayload } from '../game/types';
 
 const initialState: GameState = {
   exploration: {
