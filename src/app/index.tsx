@@ -6,6 +6,7 @@ import { gameStateSelector } from 'src/state';
 import { Allocations } from './allocations';
 import { Resources } from './resources';
 import { Visualization } from './visualization';
+import { Advance } from './advance';
 
 export const App: React.FunctionComponent = () => {
   const { progress } = useSelector(gameStateSelector);
@@ -17,6 +18,7 @@ export const App: React.FunctionComponent = () => {
         <h1>Day {progress.day}</h1>
         <Resources />
         <Allocations />
+        <Advance />
       </div>
     </div>
   );

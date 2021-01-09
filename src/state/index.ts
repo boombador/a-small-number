@@ -97,7 +97,7 @@ const waterEvent = (gameState: GameState): GameEvent => {
   const people = gameState.activityAllocations.collect_water;
   const water = (3 + luck) * people;
   return {
-    message: `Retrieved water, stored ${water} units`,
+    message: `Retrieved water, stored ${Math.round(water)} units`,
     resourceDeltas: { ...emptyResources, water },
   };
 };
@@ -115,7 +115,7 @@ const forageEvent = (gameState: GameState): GameEvent => {
   }
   const food = (1.5 + luck) * people;
   return {
-    message: `Gathered some berries, stored ${food} units`,
+    message: `Gathered some berries, stored ${Math.round(food)} units`,
     resourceDeltas: { ...emptyResources, food },
   };
 };
@@ -133,7 +133,7 @@ const huntEvent = (gameState: GameState): GameEvent => {
   }
   const food = (10 + luck * 10) * people;
   return {
-    message: `Caught some meat, stored ${food} units`,
+    message: `Caught some meat, stored ${Math.round(food)} units`,
     resourceDeltas: { ...emptyResources, food },
   };
 };
@@ -143,7 +143,7 @@ const lumberEvent = (gameState: GameState): GameEvent => {
   const people = gameState.activityAllocations.gather_lumber;
   const wood = (2 + luck * 2) * people;
   return {
-    message: `Retrieved lumber, stored ${wood} units`,
+    message: `Retrieved lumber, stored ${Math.round(wood)} units`,
     resourceDeltas: { ...emptyResources, wood },
   };
 };

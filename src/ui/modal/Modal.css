@@ -1,0 +1,8 @@
+#modal {
+  background: white;
+  padding: 1rem;
+  position: fixed;
+  top: 25vh;
+  left: 25vw;
+  width: 50vh;
+}
