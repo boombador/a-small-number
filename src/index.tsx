@@ -8,7 +8,7 @@ import './index.css';
 import reportWebVitals from './reportWebVitals';
 // Redux
 import gameStateReducer from './state';
-import { GameState } from './game';
+import { GameState } from './game/types';
 
 import { App } from './app';
 
