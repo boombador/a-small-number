@@ -114,9 +114,6 @@ const lumberEvent = (gameState: GameState): GameEvent => {
   };
 };
 
-// const scoutEvent = (gameState: GameState): GameEvent => {};
-// const defendEvent = (gameState: GameState): GameEvent => {};
-
 export const calculateDaysEvents = (gameState: GameState): GameEvent[] => {
   const result = [];
 
@@ -124,8 +121,6 @@ export const calculateDaysEvents = (gameState: GameState): GameEvent[] => {
   result.push(forageEvent(gameState));
   result.push(huntEvent(gameState));
   result.push(lumberEvent(gameState));
-  // result.push(scoutEvent(gameState));
-  // result.push(defendEvent(gameState));
 
   return result;
 };
