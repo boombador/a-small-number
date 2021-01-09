@@ -1,10 +1,10 @@
 export type ResourceType = 'people' | 'food' | 'water' | 'wood';
 
-export type Activity = 'gather_lumber' | 'defend' | 'gather_food' | 'hunt' | 'collect_water' | 'scout';
+export type ActivityType = 'gather_lumber' | 'defend' | 'gather_food' | 'hunt' | 'collect_water' | 'scout';
 
 export type ResourceMap = { [K in ResourceType]: number };
 
-export type ActivityAllocations = { [K in Activity]: number };
+export type ActivityAllocations = { [K in ActivityType]: number };
 
 export type ResourceNode = {
   type: ResourceType;
@@ -33,7 +33,7 @@ export interface GameState {
 }
 
 export type SetAllocationPayload = {
-  activity: Activity;
+  activity: ActivityType;
   amount: number;
 };
 
