@@ -23,6 +23,7 @@ export type Resources = {
 export type Progress = {
   day: number;
   messages: string[];
+  failed: boolean;
 };
 
 export interface GameState {

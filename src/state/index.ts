@@ -32,6 +32,7 @@ const initialState: GameState = {
   progress: {
     day: 1,
     messages: [],
+    failed: false,
   },
 };
 
@@ -55,6 +56,8 @@ const gameStateSlice = createSlice({
         daysEvents.map((x) => x.resourceDeltas),
       );
       state.progress.day++;
+      const { food, water } = state.resources.stored;
+      state.progress.failed = food < 0 || water < 0;
 
       // reset state for start of day
       state.activityAllocations = {

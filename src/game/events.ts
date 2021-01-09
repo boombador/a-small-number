@@ -57,6 +57,14 @@ const lumberEvent = (gameState: GameState): GameEvent => {
   };
 };
 
+export const consumeEvent = (gameState: GameState): GameEvent => {
+  const people = gameState.resources.stored;
+  return {
+    message: `Consumed food and water for ${people} people`,
+    resourceDeltas: { ...emptyResources, food: -people, water: -people },
+  };
+};
+
 export const calculateDaysEvents = (gameState: GameState): GameEvent[] => {
   const result = [];
 
@@ -64,6 +72,7 @@ export const calculateDaysEvents = (gameState: GameState): GameEvent[] => {
   result.push(forageEvent(gameState));
   result.push(huntEvent(gameState));
   result.push(lumberEvent(gameState));
+  result.push(consumeEvent(gameState));
 
   return result;
 };
