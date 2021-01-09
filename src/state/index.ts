@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
-type ResourceType = 'people' | 'food' | 'water' | 'wood';
+export type ResourceType = 'people' | 'food' | 'water' | 'wood';
 
 type ResourceNode = {
   type: ResourceType;
@@ -16,7 +16,7 @@ type Resources = {
   storageContainers: { [K in ResourceType]: number };
 };
 
-type Activity = 'gather_lumber' | 'defend' | 'gather_food' | 'hunt' | 'collect_water' | 'scout';
+export type Activity = 'gather_lumber' | 'defend' | 'gather_food' | 'hunt' | 'collect_water' | 'scout';
 
 type ActivityAllocations = {
   [K in Activity]: number;
@@ -40,10 +40,10 @@ const initialState: GameState = {
   },
   resources: {
     stored: {
-      people: 0,
-      food: 0,
-      water: 0,
-      wood: 0,
+      people: 50,
+      food: Math.round(Math.random() * 100),
+      water: Math.round(Math.random() * 100),
+      wood: Math.round(Math.random() * 40),
     },
     storageContainers: {
       people: 0,

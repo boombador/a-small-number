@@ -5,15 +5,19 @@ import { gameStateSelector } from 'src/state';
 
 import { Allocations } from './allocations';
 import { Resources } from './resources';
+import { Visualization } from './visualization';
 
 export const App: React.FunctionComponent = () => {
   const { progress } = useSelector(gameStateSelector);
 
   return (
     <div>
-      <h1>Day: {progress.day}</h1>
-      <Resources />
-      <Allocations />
+      <Visualization />
+      <div className="ui-section">
+        <h1>Day {progress.day}</h1>
+        <Resources />
+        <Allocations />
+      </div>
     </div>
   );
 };
