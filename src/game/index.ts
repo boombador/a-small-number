@@ -4,25 +4,23 @@ export type Activity = 'gather_lumber' | 'defend' | 'gather_food' | 'hunt' | 'co
 
 export type ResourceMap = { [K in ResourceType]: number };
 
+export type ActivityAllocations = { [K in Activity]: number };
+
 export type ResourceNode = {
   type: ResourceType;
   amount: number;
 };
 
-export type Exploration = {
+type Exploration = {
   discoveredResources: ResourceNode[];
 };
 
 type Resources = {
-  stored: { [K in ResourceType]: number };
-  storageContainers: { [K in ResourceType]: number };
+  stored: ResourceMap;
+  storageContainers: ResourceMap;
 };
 
-export type ActivityAllocations = {
-  [K in Activity]: number;
-};
-
-export type Progress = {
+type Progress = {
   day: number;
   messages: string[];
 };
@@ -41,7 +39,7 @@ export type SetAllocationPayload = {
 
 type GameEvent = {
   message: string;
-  resourceDeltas: { [K in ResourceType]: number };
+  resourceDeltas: ResourceMap;
 };
 
 export const emptyResources = {
