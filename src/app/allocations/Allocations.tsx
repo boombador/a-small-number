@@ -13,7 +13,7 @@ export const Allocations: React.FunctionComponent = () => {
   const remainingPeople = resources.stored.people - allocatedPeople;
 
   const allocationItems = Object.entries(activityAllocations).map(([activity, amount]) => (
-    <li key={activity}>
+    <li key={activity} style={{ display: 'inline-block', margin: '0 2rem 2rem 0' }}>
       <Allocation activity={activity as ActivityType} amount={amount} remainingPeople={remainingPeople} />
     </li>
   ));

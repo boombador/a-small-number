@@ -1,0 +1,6 @@
+div.message-box {
+  background: rgb(240, 240, 240);
+  height: 100%;
+  width: 100%;
+  padding: 1rem;
+}

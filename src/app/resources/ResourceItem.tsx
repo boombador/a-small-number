@@ -3,6 +3,18 @@ import React from 'react';
 import { ResourceType } from 'src/game';
 import { formatText } from 'src/utils/text';
 
+import HumanSVG from 'src/ui/images/icons/Human.svg';
+import FoodSVG from 'src/ui/images/icons/Food.svg';
+import WaterSVG from 'src/ui/images/icons/Water.svg';
+import WoodSVG from 'src/ui/images/icons/Wood.svg';
+
+const URLMapping: { [K in ResourceType]: string } = {
+  people: HumanSVG,
+  food: FoodSVG,
+  water: WaterSVG,
+  wood: WoodSVG,
+};
+
 type Props = {
   resource: ResourceType;
   amount: number;
@@ -11,7 +23,8 @@ type Props = {
 export const ResourceItem: React.FunctionComponent<Props> = ({ resource, amount }) => {
   return (
     <div>
-      {formatText(resource)}: {Math.round(amount)}
+      <img src={URLMapping[resource]} style={{ width: '1.5rem', verticalAlign: 'bottom' }} /> {formatText(resource)}:{' '}
+      <b>{Math.round(amount)}</b>
     </div>
   );
 };

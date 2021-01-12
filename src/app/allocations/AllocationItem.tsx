@@ -5,6 +5,8 @@ import { ActivityType } from 'src/game';
 import { incrementAllocation, decrementAllocation } from 'src/state';
 import { formatText } from 'src/utils/text';
 
+import './AllocationItem.css';
+
 type Props = {
   activity: ActivityType;
   amount: number;
@@ -16,13 +18,20 @@ export const Allocation: React.FunctionComponent<Props> = ({ activity, amount, r
 
   return (
     <div>
-      {formatText(activity)}:{' '}
+      {formatText(activity)}: {amount}
+      <br />
+      <button disabled={amount < 5} onClick={() => dispatch(decrementAllocation({ activity, amount: 5 }))}>
+        - 5
+      </button>
       <button disabled={amount === 0} onClick={() => dispatch(decrementAllocation({ activity, amount: 1 }))}>
         - 1
       </button>
-      {amount}
+      &nbsp;
       <button disabled={remainingPeople === 0} onClick={() => dispatch(incrementAllocation({ activity, amount: 1 }))}>
         + 1
+      </button>
+      <button disabled={remainingPeople < 5} onClick={() => dispatch(incrementAllocation({ activity, amount: 5 }))}>
+        + 5
       </button>
     </div>
   );
