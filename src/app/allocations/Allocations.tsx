@@ -1,7 +1,8 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 
-import { gameStateSelector, Activity } from 'src/state';
+import { ActivityType } from 'src/game';
+import { gameStateSelector } from 'src/state';
 
 import { Allocation } from './AllocationItem';
 
@@ -13,7 +14,7 @@ export const Allocations: React.FunctionComponent = () => {
 
   const allocationItems = Object.entries(activityAllocations).map(([activity, amount]) => (
     <li key={activity}>
-      <Allocation activity={activity as Activity} amount={amount} remainingPeople={remainingPeople} />
+      <Allocation activity={activity as ActivityType} amount={amount} remainingPeople={remainingPeople} />
     </li>
   ));
 
