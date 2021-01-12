@@ -1,4 +1,13 @@
 export { calculateDaysEvents } from './events';
 export { updatedResources } from './advancement';
 export { emptyActivities, emptyResources } from './constants';
-export type { ActivityType, GameState, ResourceNode, SetAllocationPayload } from './types';
+export type {
+  ActivityType,
+  ResourceType,
+  ActivityAllocations,
+  ResourceMap,
+  ResourceNode,
+  GameEvent,
+  GameState,
+  SetAllocationPayload,
+} from './types';

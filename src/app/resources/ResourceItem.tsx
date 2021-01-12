@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { ResourceType } from 'src/state';
+import { ResourceType } from 'src/game';
 import { formatText } from 'src/utils/text';
 
 type Props = {

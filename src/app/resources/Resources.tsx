@@ -1,7 +1,8 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 
-import { gameStateSelector, ResourceType } from 'src/state';
+import { gameStateSelector } from 'src/state';
+import { ResourceType } from 'src/game';
 
 import { ResourceItem } from './ResourceItem';
 
