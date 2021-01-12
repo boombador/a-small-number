@@ -1,4 +1,4 @@
-import { calculateDaysEvents } from './events';
-import { updatedResources } from './advancement';
-
-export { calculateDaysEvents, updatedResources };
+export { calculateDaysEvents } from './events';
+export { updatedResources } from './advancement';
+export { emptyActivities, emptyResources } from './constants';
+export type { ActivityType, GameState, ResourceNode, SetAllocationPayload } from './types';
