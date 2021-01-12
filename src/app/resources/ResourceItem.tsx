@@ -1,5 +1,17 @@
 import React from 'react';
 
-export const ResourceItem: React.FunctionComponent = () => {
-  return <>ResourceItem</>;
+import { ResourceType } from 'src/state';
+import { formatText } from 'src/utils/text';
+
+type Props = {
+  resource: ResourceType;
+  amount: number;
+};
+
+export const ResourceItem: React.FunctionComponent<Props> = ({ resource, amount }) => {
+  return (
+    <div>
+      {formatText(resource)}: {Math.round(amount)}
+    </div>
+  );
 };

@@ -1,13 +1,15 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 
-import { gameStateSelector } from 'src/state';
+import { gameStateSelector, ResourceType } from 'src/state';
+
+import { ResourceItem } from './ResourceItem';
 
 export const Resources: React.FunctionComponent = () => {
   const { resources } = useSelector(gameStateSelector);
-  const resourceItems = Object.entries(resources.stored).map(([resourceName, value]) => (
+  const resourceItems = Object.entries(resources.stored).map(([resourceName, amount]) => (
     <li key={resourceName}>
-      {resourceName}: {value}
+      <ResourceItem resource={resourceName as ResourceType} amount={amount} />
     </li>
   ));
 
