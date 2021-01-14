@@ -5,7 +5,7 @@ import { gameStateSelector } from 'src/state';
 
 import './Messages.css';
 
-const MAX_TYPE_SPEED = 0.2;
+const MAX_TYPE_SPEED = 30;
 
 export const Messages: React.FunctionComponent = () => {
   const {
@@ -13,13 +13,18 @@ export const Messages: React.FunctionComponent = () => {
   } = useSelector(gameStateSelector);
 
   const [currentText, setCurrentText] = React.useState(new Array<string>(messages.length));
-  const [remainingText, setRemainingText] = React.useState(messages);
+  const [remainingText, setRemainingText] = React.useState<string[]>([]);
+
+  React.useEffect(() => {
+    setCurrentText([]);
+    setRemainingText(messages);
+  }, [day]);
 
   React.useEffect(() => {
     if (remainingText.length && remainingText[0].length) {
-      const currentLineIndex = remainingText.length - messages.length;
+      const currentLineIndex = messages.length - remainingText.length;
       const currentLine = currentText[currentLineIndex];
-      const newLine = currentLine + remainingText[0][0];
+      const newLine = (currentLine || '') + remainingText[0][0];
       const newCurrentText = [...currentText];
       newCurrentText[currentLineIndex] = newLine;
 
@@ -32,7 +37,12 @@ export const Messages: React.FunctionComponent = () => {
     }
   }, [JSON.stringify(remainingText)]);
 
-  const messageInfo = currentText.map((text) => <p>{text}</p>);
+  const messageInfo = currentText.filter(Boolean).map((text, i) => (
+    <p key={i}>
+      {text}
+      {i === currentText.length - 1 ? <i className="cursor"></i> : <br />}
+    </p>
+  ));
 
   return <div className="message-box">{messageInfo}</div>;
 };

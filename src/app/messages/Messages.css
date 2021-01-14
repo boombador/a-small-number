@@ -4,3 +4,26 @@ div.message-box {
   width: 100%;
   padding: 1rem;
 }
+
+div.message-box p {
+  position: relative;
+  white-space: nowrap;
+  display: inline-block;
+}
+
+i.cursor {
+  display: inline-block;
+  background: white;
+  position: absolute;
+  right: -1.1rem;
+  bottom: 1px;
+  width: 14px;
+  height: 120%;
+  animation: animated-cursor 900ms steps(30,end) infinite;
+}
+
+/* cursor animations */
+@keyframes animated-cursor {
+  from { background: white; }
+  to { background: transparent; }
+}
