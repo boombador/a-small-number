@@ -18,18 +18,24 @@ export const Allocation: React.FunctionComponent<Props> = ({ activity, amount, r
 
   return (
     <div>
-      {formatText(activity)}: {amount}
+      <span style={{ color: '' }}>{formatText(activity)}:</span> <b>{amount}</b>
       <br />
       <button disabled={amount < 5} onClick={() => dispatch(decrementAllocation({ activity, amount: 5 }))}>
         - 5
       </button>
+      &nbsp;
       <button disabled={amount === 0} onClick={() => dispatch(decrementAllocation({ activity, amount: 1 }))}>
         - 1
       </button>
-      &nbsp;
+      &nbsp;&nbsp;
+      <button disabled={amount === 0} onClick={() => dispatch(decrementAllocation({ activity, amount }))}>
+        X
+      </button>
+      &nbsp;&nbsp;
       <button disabled={remainingPeople === 0} onClick={() => dispatch(incrementAllocation({ activity, amount: 1 }))}>
         + 1
       </button>
+      &nbsp;
       <button disabled={remainingPeople < 5} onClick={() => dispatch(incrementAllocation({ activity, amount: 5 }))}>
         + 5
       </button>

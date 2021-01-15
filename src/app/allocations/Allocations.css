@@ -1,0 +1,6 @@
+li.allocation {
+  display: inline-block;
+  margin: 0 1rem 1rem 0;
+  border-left: 4px solid black;
+  padding: 0.4rem 1rem;
+}

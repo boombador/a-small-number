@@ -5,7 +5,7 @@ import { gameStateSelector } from 'src/state';
 
 import './Messages.css';
 
-const MAX_TYPE_SPEED = 30;
+const MAX_TYPE_SPEED = 50;
 
 export const Messages: React.FunctionComponent = () => {
   const {
@@ -14,10 +14,12 @@ export const Messages: React.FunctionComponent = () => {
 
   const [currentText, setCurrentText] = React.useState(new Array<string>(messages.length));
   const [remainingText, setRemainingText] = React.useState<string[]>([]);
+  const [updateTimeout, setUpdateTimeout] = React.useState<NodeJS.Timeout>();
 
   React.useEffect(() => {
     setCurrentText([]);
     setRemainingText(messages);
+    if (updateTimeout) clearTimeout(updateTimeout);
   }, [day]);
 
   React.useEffect(() => {
@@ -31,17 +33,20 @@ export const Messages: React.FunctionComponent = () => {
       const newRemainingText = [remainingText[0].slice(1), ...remainingText.slice(1)];
 
       setCurrentText(newCurrentText);
-      setTimeout(() => setRemainingText(newRemainingText), Math.random() * MAX_TYPE_SPEED);
+      setUpdateTimeout(setTimeout(() => setRemainingText(newRemainingText), Math.random() * MAX_TYPE_SPEED));
     } else if (remainingText.length && !remainingText[0].length) {
-      setTimeout(() => setRemainingText(remainingText.slice(1)), Math.random() * MAX_TYPE_SPEED);
+      setUpdateTimeout(setTimeout(() => setRemainingText(remainingText.slice(1)), Math.random() * MAX_TYPE_SPEED));
     }
   }, [JSON.stringify(remainingText)]);
 
   const messageInfo = currentText.filter(Boolean).map((text, i) => (
-    <p key={i}>
-      {text}
-      {i === currentText.length - 1 ? <i className="cursor"></i> : <br />}
-    </p>
+    <React.Fragment key={`${i}-fragment`}>
+      <p key={i}>
+        {text}
+        {i === currentText.length - 1 && <span className="cursor"></span>}
+      </p>
+      <br key={`${i}-br`} />
+    </React.Fragment>
   ));
 
   return <div className="message-box">{messageInfo}</div>;

@@ -3,27 +3,27 @@ div.message-box {
   height: 100%;
   width: 100%;
   padding: 1rem;
+  box-sizing: border-box;
 }
 
 div.message-box p {
   position: relative;
-  white-space: nowrap;
   display: inline-block;
 }
 
-i.cursor {
+span.cursor {
   display: inline-block;
-  background: white;
+  background: black;
   position: absolute;
-  right: -1.1rem;
+  right: -1rem;
   bottom: 1px;
-  width: 14px;
-  height: 120%;
+  width: 12px;
+  height: 1.2rem;
   animation: animated-cursor 900ms steps(30,end) infinite;
 }
 
 /* cursor animations */
 @keyframes animated-cursor {
-  from { background: white; }
+  from { background: black; }
   to { background: transparent; }
 }
