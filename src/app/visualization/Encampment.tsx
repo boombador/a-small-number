@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { MeshProps, useFrame } from 'react-three-fiber';
+import { MeshProps /*, useFrame*/ } from 'react-three-fiber';
 import type { Mesh } from 'three';
 
 const Encampment: React.FC<MeshProps> = (props) => {
@@ -11,9 +11,11 @@ const Encampment: React.FC<MeshProps> = (props) => {
   const [active, setActive] = useState(false);
 
   // Rotate mesh every frame, this is outside of React without overhead
+  /*
   useFrame(() => {
     if (mesh.current) mesh.current.rotation.x = mesh.current.rotation.y += 0.01;
   });
+  */
 
   return (
     <mesh
