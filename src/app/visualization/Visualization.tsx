@@ -4,6 +4,7 @@ import { Vector3 } from 'three';
 
 import './Visualization.css';
 import Encampment from './Encampment';
+import Ground from './Ground';
 
 type milliseconds = number;
 
@@ -13,7 +14,7 @@ const offsetToCameraCoords = (offset: milliseconds): number[] => {
   const radians = offset;
   const x = Math.cos(radians) * cameraOrbitRadius;
   const y = Math.sin(radians) * cameraOrbitRadius;
-  return [x, 0, y]; // may need to fiddle
+  return [x, 2, y]; // may need to fiddle
 };
 
 const GameScene: React.FunctionComponent = () => {
@@ -30,7 +31,9 @@ const GameScene: React.FunctionComponent = () => {
     <>
       <ambientLight />
       <pointLight position={[10, 10, 10]} />
-      <Encampment position={[0, 0, 0]} />
+      <axesHelper args={[3]} />
+      <Ground />
+      <Encampment coords={[2, 0]} />
     </>
   );
 };

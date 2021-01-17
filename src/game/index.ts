@@ -9,5 +9,6 @@ export type {
   ResourceNode,
   GameEvent,
   GameState,
+  GameCoords,
   SetAllocationPayload,
 } from './types';

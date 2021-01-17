@@ -42,3 +42,5 @@ export type GameEvent = {
   message: string;
   resourceDeltas: ResourceMap;
 };
+
+export type GameCoords = [number, number];
