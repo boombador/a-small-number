@@ -5,8 +5,10 @@ import { cameraOrbitRadius, cameraOrbitHeight, upDirection, GameState } from 'sr
 import './Visualization.css';
 import Encampment, { EncampmentProps } from './Encampment';
 import Ground from './Ground';
+import ResourceNode, { ResourceNodeProps } from './ResourceNode';
 
 type milliseconds = number;
+type VisualizationProps = { gameState: GameState };
 
 const offsetToCameraCoords = (offset: milliseconds): number[] => {
   const radians = offset;
@@ -15,15 +17,17 @@ const offsetToCameraCoords = (offset: milliseconds): number[] => {
   return [x, y, cameraOrbitHeight]; // may need to fiddle
 };
 
-type VisualizationProps = { gameState: GameState };
-
-interface RenderArgsFunc {
-  (gameState: GameState): EncampmentProps;
-}
-
 // placeholder arguments, eventually derive
-const encampmentRenderArgsFromGameState: RenderArgsFunc = () => {
-  return { coords: [0, 0] };
+const renderArgsFromGameState = (
+  gameState: GameState,
+): { encampmentArgs: EncampmentProps; resourceNodeArgsList: ResourceNodeProps[] } => {
+  return {
+    encampmentArgs: { coords: [0, 0] },
+    resourceNodeArgsList: [
+      { coords: [3, 0], type: 'food', quantity: 10, name: 'Berries' },
+      { coords: [0, 3], type: 'wood', quantity: 300, name: 'Copse of Trees' },
+    ],
+  };
 };
 
 /* The canvas contents are separated into their own function component (FC)
@@ -40,14 +44,16 @@ export const CanvasContents: React.FC<VisualizationProps> = ({ gameState }) => {
     setTotalDelta(totalDelta + delta);
   });
 
-  const encampmentArgs = encampmentRenderArgsFromGameState(gameState);
-
+  const { encampmentArgs, resourceNodeArgsList } = renderArgsFromGameState(gameState);
   return (
     <>
       <ambientLight />
       <pointLight position={[10, 10, 10]} />
       <Ground />
       <Encampment {...encampmentArgs} />
+      {resourceNodeArgsList.map((resourceNodeArgs) => (
+        <ResourceNode {...resourceNodeArgs} />
+      ))}
     </>
   );
 };
