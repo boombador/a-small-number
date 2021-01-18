@@ -9,13 +9,14 @@ import { Visualization } from './visualization';
 import { Advance } from './advance';
 
 export const App: React.FunctionComponent = () => {
-  const { progress } = useSelector(gameStateSelector);
+  const gameState = useSelector(gameStateSelector);
+  const visualizationArgs = { gameState };
 
   return (
     <div>
-      <Visualization />
+      <Visualization {...visualizationArgs} />
       <div className="ui-section">
-        <h1>Day {progress.day}</h1>
+        <h1>Day {gameState.progress.day}</h1>
         <Resources />
         <Allocations />
         <Advance />

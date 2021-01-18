@@ -43,4 +43,5 @@ export type GameEvent = {
   resourceDeltas: ResourceMap;
 };
 
+export type Vec3Array = [number, number, number];
 export type GameCoords = [number, number];

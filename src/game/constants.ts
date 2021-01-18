@@ -13,3 +13,7 @@ export const emptyActivities = {
   collect_water: 0,
   scout: 0,
 };
+
+export const cameraOrbitRadius = 2;
+export const cameraOrbitHeight = 1.3;
+export const upDirection = [0, 0, 1];
