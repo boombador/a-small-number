@@ -7,10 +7,11 @@ import {
   upDirection,
   GameState,
   GameCoords,
-  ResourceNode as ResourceNodeType,
+  Encampment,
+  ResourceNode,
 } from 'src/game';
-import Encampment, { EncampmentProps } from './Encampment';
-import Ground from './Ground';
+import EncampmentComponent from './Encampment';
+import GroundComponent from './Ground';
 import ResourceNodeComponent from './ResourceNode';
 
 type CanvasProps = { gameState: GameState };
@@ -28,7 +29,7 @@ const offsetToCameraCoords = (offset: milliseconds): number[] => {
 
 const renderArgsFromGameState = (
   gameState: GameState,
-): { encampmentArgs: EncampmentProps; resourceNodeArgsList: ResourceNodeType[] } => {
+): { encampmentArgs: Encampment; resourceNodeArgsList: ResourceNode[] } => {
   return {
     encampmentArgs: placeholderEncampmentArgs,
     resourceNodeArgsList: gameState.exploration.discoveredResources,
@@ -54,8 +55,8 @@ const CanvasContents: React.FC<CanvasProps> = ({ gameState }) => {
     <>
       <ambientLight />
       <pointLight position={[10, 10, 10]} />
-      <Ground />
-      <Encampment {...encampmentArgs} />
+      <GroundComponent />
+      <EncampmentComponent {...encampmentArgs} />
       {resourceNodeArgsList.map((resourceNodeArgs) => (
         <ResourceNodeComponent {...resourceNodeArgs} />
       ))}

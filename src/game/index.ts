@@ -13,4 +13,5 @@ export type {
   GameCoords,
   Vec3Array,
   SetAllocationPayload,
+  Encampment,
 } from './types';

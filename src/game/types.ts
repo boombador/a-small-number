@@ -44,3 +44,7 @@ export type GameEvent = {
   message: string;
   resourceDeltas: ResourceMap;
 };
+
+export type Encampment = {
+  coords: GameCoords;
+};
