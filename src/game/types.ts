@@ -1,14 +1,16 @@
 export type ResourceType = 'people' | 'food' | 'water' | 'wood';
-
 export type ActivityType = 'gather_lumber' | 'defend' | 'gather_food' | 'hunt' | 'collect_water' | 'scout';
 
 export type ResourceMap = { [K in ResourceType]: number };
-
 export type ActivityAllocations = { [K in ActivityType]: number };
+
+export type Vec3Array = [number, number, number];
+export type GameCoords = [number, number];
 
 export type ResourceNode = {
   type: ResourceType;
   amount: number;
+  coords: GameCoords;
 };
 
 export type Exploration = {
@@ -42,6 +44,3 @@ export type GameEvent = {
   message: string;
   resourceDeltas: ResourceMap;
 };
-
-export type Vec3Array = [number, number, number];
-export type GameCoords = [number, number];

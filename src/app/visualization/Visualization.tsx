@@ -1,14 +1,16 @@
 import React, { useState } from 'react';
 import { Canvas, useFrame } from 'react-three-fiber';
 import { Vector3 } from 'three';
-import { cameraOrbitRadius, cameraOrbitHeight, upDirection, GameState } from 'src/game';
+import { cameraOrbitRadius, cameraOrbitHeight, upDirection, GameState, GameCoords, ResourceNode } from 'src/game';
 import './Visualization.css';
 import Encampment, { EncampmentProps } from './Encampment';
 import Ground from './Ground';
-import ResourceNode, { ResourceNodeProps } from './ResourceNode';
+import ResourceNodeComponent from './ResourceNode';
 
 type milliseconds = number;
 type VisualizationProps = { gameState: GameState };
+
+const sampleEncampmentArgs = { coords: [0, 0] as GameCoords };
 
 const offsetToCameraCoords = (offset: milliseconds): number[] => {
   const radians = offset;
@@ -20,13 +22,10 @@ const offsetToCameraCoords = (offset: milliseconds): number[] => {
 // placeholder arguments, eventually derive
 const renderArgsFromGameState = (
   gameState: GameState,
-): { encampmentArgs: EncampmentProps; resourceNodeArgsList: ResourceNodeProps[] } => {
+): { encampmentArgs: EncampmentProps; resourceNodeArgsList: ResourceNode[] } => {
   return {
-    encampmentArgs: { coords: [0, 0] },
-    resourceNodeArgsList: [
-      { coords: [3, 0], type: 'food', quantity: 10, name: 'Berries' },
-      { coords: [0, 3], type: 'wood', quantity: 300, name: 'Copse of Trees' },
-    ],
+    encampmentArgs: sampleEncampmentArgs,
+    resourceNodeArgsList: gameState.exploration.discoveredResources,
   };
 };
 
@@ -52,7 +51,7 @@ export const CanvasContents: React.FC<VisualizationProps> = ({ gameState }) => {
       <Ground />
       <Encampment {...encampmentArgs} />
       {resourceNodeArgsList.map((resourceNodeArgs) => (
-        <ResourceNode {...resourceNodeArgs} />
+        <ResourceNodeComponent {...resourceNodeArgs} />
       ))}
     </>
   );
