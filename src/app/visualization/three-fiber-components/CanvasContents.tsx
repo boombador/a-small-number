@@ -10,17 +10,15 @@ import {
   Encampment,
   ResourceNode,
 } from 'src/game';
+// TODO: better names for types / components / filenames / imports
 import EncampmentComponent from './Encampment';
 import GroundComponent from './Ground';
 import ResourceNodeComponent from './ResourceNode';
 
 type CanvasProps = { gameState: GameState };
+type Milliseconds = number;
 
-type milliseconds = number;
-
-const placeholderEncampmentArgs = { coords: [0, 0] as GameCoords };
-
-const offsetToCameraCoords = (offset: milliseconds): number[] => {
+const offsetToCameraCoords = (offset: Milliseconds): number[] => {
   const radians = offset;
   const x = Math.cos(radians) * cameraOrbitRadius;
   const y = Math.sin(radians) * cameraOrbitRadius;
@@ -30,6 +28,9 @@ const offsetToCameraCoords = (offset: milliseconds): number[] => {
 const renderArgsFromGameState = (
   gameState: GameState,
 ): { encampmentArgs: Encampment; resourceNodeArgsList: ResourceNode[] } => {
+  // remove placeholder once locations are implemented in main game state
+  const placeholderEncampmentArgs = { coords: [0, 0] as GameCoords };
+
   return {
     encampmentArgs: placeholderEncampmentArgs,
     resourceNodeArgsList: gameState.exploration.discoveredResources,
