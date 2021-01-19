@@ -1,12 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import {
-  calculateDaysEvents,
-  emptyActivities,
-  updatedResources,
-  GameState,
-  SetAllocationPayload,
-  ResourceNode,
-} from '../game';
+import { calculateDaysEvents, updatedResources, GameState, SetAllocationPayload, ResourceNode } from '../game';
 
 const sampleResourceNodes: ResourceNode[] = [
   {
@@ -79,10 +72,11 @@ const gameStateSlice = createSlice({
       const { food, water } = state.resources.stored;
       state.progress.failed = food < 0 || water < 0;
 
-      // reset state for start of day
-      state.activityAllocations = {
-        ...emptyActivities,
-      };
+      // TODO: validate allocations and replace with corrected versions
+      // - resource nodes may run out
+      // - people count may change
+      // - projects may complete
+      //state.activityAllocations = validatedAllocations(state);
     },
   },
 });
