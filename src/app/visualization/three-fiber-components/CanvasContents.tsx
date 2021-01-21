@@ -28,11 +28,8 @@ const offsetToCameraCoords = (offset: Milliseconds): number[] => {
 const renderArgsFromGameState = (
   gameState: GameState,
 ): { encampmentArgs: Encampment; resourceNodeArgsList: ResourceNode[] } => {
-  // remove placeholder once locations are implemented in main game state
-  const placeholderEncampmentArgs = { coords: [0, 0] as GameCoords };
-
   return {
-    encampmentArgs: placeholderEncampmentArgs,
+    encampmentArgs: { coords: [0, 0] as GameCoords },
     resourceNodeArgsList: gameState.exploration.discoveredResources,
   };
 };

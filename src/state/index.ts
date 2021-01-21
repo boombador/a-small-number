@@ -16,10 +16,7 @@ const sampleResourceNodes: ResourceNode[] = [
 
 const initialState: GameState = {
   exploration: {
-    discoveredResources: [
-      // TODO: move this to some game init place after testing render
-      ...sampleResourceNodes,
-    ],
+    discoveredResources: sampleResourceNodes,
   },
   resources: {
     stored: {

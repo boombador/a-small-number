@@ -10,11 +10,9 @@ import { Advance } from './advance';
 
 export const App: React.FunctionComponent = () => {
   const gameState = useSelector(gameStateSelector);
-  const visualizationArgs = { gameState };
-
   return (
     <div>
-      <Visualization {...visualizationArgs} />
+      <Visualization gameState={gameState} />
       <div className="ui-section">
         <h1>Day {gameState.progress.day}</h1>
         <Resources />
