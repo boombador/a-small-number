@@ -1,16 +1,29 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { calculateDaysEvents, updatedResources, GameState, SetAllocationPayload } from '../game';
+import { calculateDaysEvents, updatedResources, GameState, SetAllocationPayload, ResourceNode } from '../game';
+
+const sampleResourceNodes: ResourceNode[] = [
+  {
+    type: 'food',
+    coords: [3, 0],
+    amount: 100,
+  },
+  {
+    type: 'water',
+    coords: [0, 3],
+    amount: 1000,
+  },
+];
 
 const initialState: GameState = {
   exploration: {
-    discoveredResources: [],
+    discoveredResources: sampleResourceNodes,
   },
   resources: {
     stored: {
       people: 50,
-      food: Math.round(Math.random() * 100),
-      water: Math.round(Math.random() * 100),
-      wood: Math.round(Math.random() * 40),
+      food: 100, // Math.round(Math.random() * 100),
+      water: 100, // Math.round(Math.random() * 100),
+      wood: 40, // Math.round(Math.random() * 40),
     },
     storageContainers: {
       people: 0,
@@ -44,7 +57,6 @@ const gameStateSlice = createSlice({
     decrementAllocation: (state, { payload }: PayloadAction<SetAllocationPayload>) => {
       state.activityAllocations[payload.activity] -= payload.amount;
     },
-
     advanceDay: (state) => {
       const daysEvents = calculateDaysEvents(state);
 

@@ -12,16 +12,15 @@ import { Messages } from './messages';
 import './layout.css';
 
 export const App: React.FunctionComponent = () => {
-  const { progress } = useSelector(gameStateSelector);
-
+  const gameState = useSelector(gameStateSelector);
   return (
     <div>
       <section className="visualization">
-        <Visualization />
+        <Visualization gameState={gameState} />
       </section>
       <section className="ui">
         <div className="controls">
-          <h1>Day {progress.day}</h1>
+          <h1>Day {gameState.progress.day}</h1>
           <Resources />
           <Allocations />
 
