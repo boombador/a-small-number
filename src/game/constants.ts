@@ -31,3 +31,7 @@ export const activityColors: { [K in ActivityType]: string } = {
   collect_water: resourceColors.water,
   scout: '#C29E3D',
 };
+
+export const cameraOrbitRadius = 2;
+export const cameraOrbitHeight = 1.3;
+export const upDirection = [0, 0, 1];

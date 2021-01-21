@@ -1,6 +1,7 @@
 export { calculateDaysEvents } from './events';
 export { updatedResources } from './advancement';
-export { emptyActivities, emptyResources } from './constants';
+export { emptyActivities, emptyResources, cameraOrbitRadius, cameraOrbitHeight, upDirection } from './constants';
+export { coordsToPosition, positionArgsFromCoords } from './util';
 export type {
   ActivityType,
   ResourceType,
@@ -9,5 +10,8 @@ export type {
   ResourceNode,
   GameEvent,
   GameState,
+  GameCoords,
+  Vec3Array,
   SetAllocationPayload,
+  Encampment,
 } from './types';
