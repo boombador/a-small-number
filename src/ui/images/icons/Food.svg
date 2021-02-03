@@ -1,0 +1,12 @@
+<svg width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
+<rect width="100" height="100" fill="white"/>
+<rect x="58.3094" y="38.3873" width="6" height="63" rx="3" transform="rotate(45 58.3094 38.3873)" fill="black" stroke="white"/>
+<path d="M55.9083 43.7873C55.7907 44.4682 56.3828 45.0603 57.0637 44.9428L70.0478 42.7021C70.8468 42.5642 71.1582 41.5828 70.5849 41.0095L59.8415 30.2661C59.2682 29.6928 58.2868 30.0042 58.149 30.8032L55.9083 43.7873Z" fill="black"/>
+<ellipse cx="72.6378" cy="28.2132" rx="12" ry="18" transform="rotate(45 72.6378 28.2132)" fill="black"/>
+<rect x="8.12131" y="22.9706" width="3" height="30" rx="1.5" transform="rotate(-45 8.12131 22.9706)" fill="black"/>
+<rect x="12.364" y="18.7279" width="3" height="30" rx="1.5" transform="rotate(-45 12.364 18.7279)" fill="black"/>
+<rect x="37.8198" y="42.0625" width="6" height="63" rx="3" transform="rotate(-45 37.8198 42.0625)" fill="black" stroke="white"/>
+<rect x="16.6066" y="14.4853" width="3" height="30" rx="1.5" transform="rotate(-45 16.6066 14.4853)" fill="black"/>
+<rect x="20.8492" y="10.2426" width="3" height="30" rx="1.5" transform="rotate(-45 20.8492 10.2426)" fill="black"/>
+<path d="M43.3856 44.4546C43.9931 44.4983 44.4982 43.9932 44.4546 43.3856L43.4151 28.9076C43.3538 28.0531 42.3164 27.6663 41.7106 28.2721L28.2721 41.7106C27.6663 42.3164 28.0531 43.3538 28.9076 43.4152L43.3856 44.4546Z" fill="black"/>
+</svg>

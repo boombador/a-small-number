@@ -1,0 +1,27 @@
+section.visualization {
+  height: 25vh;
+  width: 100vw;
+}
+
+section.ui div.controls, section.ui div.messages {
+  overflow: auto;
+  height: 75vh;
+  width: 50%;
+}
+
+section.ui div.controls {
+  position: relative;
+  box-sizing: border-box;
+  padding: 0 1rem;
+  float: left;
+}
+
+section.ui div.controls .advance-wrapper {
+  position: absolute;
+  top: 1.5rem;
+  right: 1rem;
+}
+
+section.ui div.messages {
+  float: right;
+}

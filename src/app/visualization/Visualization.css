@@ -1,5 +1,6 @@
 .visualization-section {
-  height: 25vh;
+  height: 100%;
+  width: 100%;
   background: rgb(59,16,4);
   background: linear-gradient(0deg, rgba(59,16,4,1) 0%, rgba(34,80,0,1) 5%, rgba(57,128,6,1) 27%, rgba(34,80,0,1) 29%, rgba(8,57,129,1) 30%, rgba(175,240,255,1) 100%);
 }

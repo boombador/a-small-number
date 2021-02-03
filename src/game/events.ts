@@ -35,7 +35,7 @@ const determineForageEvents = (gameState: GameState): GameEvent[] => {
   if (failed) {
     return [
       {
-        message: 'No food was found, hopefully we need less than we thought',
+        message: 'No berries were found, hopefully we need less than we thought',
         resourceDeltas: { ...emptyResources },
       },
     ];

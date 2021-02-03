@@ -4,7 +4,7 @@ import { useDispatch } from 'react-redux';
 import { advanceDay } from 'src/state';
 
 type Props = {
-  onClick: () => void;
+  onClick?: () => void;
 };
 
 export const AdvanceButton: React.FunctionComponent<Props> = ({ onClick }) => {
@@ -12,7 +12,7 @@ export const AdvanceButton: React.FunctionComponent<Props> = ({ onClick }) => {
 
   const onClickAction = () => {
     dispatch(advanceDay());
-    onClick();
+    if (onClick) onClick();
   };
 
   return <button onClick={onClickAction}>Advance</button>;

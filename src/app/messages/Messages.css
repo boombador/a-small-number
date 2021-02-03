@@ -1,0 +1,29 @@
+div.message-box {
+  background: rgb(240, 240, 240);
+  height: 100%;
+  width: 100%;
+  padding: 1rem;
+  box-sizing: border-box;
+}
+
+div.message-box p {
+  position: relative;
+  display: inline-block;
+}
+
+span.cursor {
+  display: inline-block;
+  background: black;
+  position: absolute;
+  right: -1rem;
+  bottom: 1px;
+  width: 12px;
+  height: 1.2rem;
+  animation: animated-cursor 900ms steps(30,end) infinite;
+}
+
+/* cursor animations */
+@keyframes animated-cursor {
+  from { background: black; }
+  to { background: transparent; }
+}
