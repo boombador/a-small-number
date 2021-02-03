@@ -55,8 +55,8 @@ const CanvasContents: React.FC<CanvasProps> = ({ gameState }) => {
       <pointLight position={[10, 10, 10]} />
       <GroundComponent />
       <EncampmentComponent {...encampmentArgs} />
-      {resourceNodeArgsList.map((resourceNodeArgs) => (
-        <ResourceNodeComponent {...resourceNodeArgs} />
+      {resourceNodeArgsList.map((resourceNodeArgs, i) => (
+        <ResourceNodeComponent key={i} {...resourceNodeArgs} />
       ))}
     </>
   );
