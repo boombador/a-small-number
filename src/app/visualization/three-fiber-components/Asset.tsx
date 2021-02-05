@@ -8,6 +8,7 @@ type MeshMap = { [key: string]: Mesh };
 type MaterialMap = { [key: string]: Material };
 type ObservedGLTF = { nodes: MeshMap; materials: MaterialMap };
 
+// based on: https://github.com/pmndrs/react-three-fiber/blob/275bf4b14e80f4ecc87132430abefdfaa52c9d73/examples/src/demos/GltfPlanet.js
 export const useGLTFData = (): ObservedGLTF => {
   // the type detected here by TypeScript was GLTF but TS also complained that
   // the type was missing the properties "materials" and "nodes", which I did
@@ -20,13 +21,12 @@ export const useGLTFData = (): ObservedGLTF => {
   return mistypedGLTF as ObservedGLTF;
 };
 
-// TODO: check out this example, seems like a better approach:
-// https://github.com/pmndrs/react-three-fiber/blob/275bf4b14e80f4ecc87132430abefdfaa52c9d73/examples/src/demos/GltfPlanet.js
-
-const GLTFAsset: React.FC<MeshProps & { url: string }> = ({ url, ...meshProps }) => {
+// alternative code, probably necessary to get this working for multi-material mesh
+// Usage:
+//   <Asset {...meshProps} url="models/camp.glb" />
+const GLTFScene: React.FC<MeshProps & { url: string }> = ({ url, ...meshProps }) => {
   const gltf = useLoader(GLTFLoader, url);
-  // console.log(url, '-', meshProps.position);
   return <primitive object={gltf.scene} {...meshProps} />;
 };
 
-export default GLTFAsset;
+export default GLTFScene;
